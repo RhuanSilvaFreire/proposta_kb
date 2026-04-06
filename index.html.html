@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Proposta Comercial — Rarhu Tecnologia</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-deep: #0a0a0f;
+    --bg-card: #111118;
+    --bg-card-hover: #16161f;
+    --accent: #6c5ce7;
+    --accent-light: #a29bfe;
+    --accent-glow: rgba(108, 92, 231, 0.25);
+    --green: #00cec9;
+    --green-glow: rgba(0, 206, 201, 0.2);
+    --orange: #fdcb6e;
+    --text: #e8e8f0;
+    --text-muted: #8888a0;
+    --text-dim: #55556a;
+    --border: rgba(255,255,255,0.06);
+    --radius: 16px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Outfit', sans-serif;
+    background: var(--bg-deep);
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* === AMBIENT BACKGROUND === */
+  .ambient {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+  }
+  .ambient .orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(120px);
+    opacity: 0.4;
+    animation: float 20s ease-in-out infinite;
+  }
+  .ambient .orb:nth-child(1) {
+    width: 600px; height: 600px;
+    background: var(--accent);
+    top: -200px; left: -100px;
+    animation-delay: 0s;
+  }
+  .ambient .orb:nth-child(2) {
+    width: 500px; height: 500px;
+    background: var(--green);
+    bottom: -150px; right: -100px;
+    animation-delay: -7s;
+  }
+  .ambient .orb:nth-child(3) {
+    width: 400px; height: 400px;
+    background: #fd79a8;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    animation-delay: -14s;
+    opacity: 0.15;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(30px, -40px) scale(1.05); }
+    66% { transform: translate(-20px, 20px) scale(0.95); }
+  }
+
+  /* === MAIN CONTAINER === */
+  .container {
+    position: relative;
+    z-index: 1;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 24px 80px;
+  }
+
+  /* === HEADER === */
+  .header {
+    text-align: center;
+    margin-bottom: 60px;
+    animation: fadeUp 0.8s ease-out;
+  }
+  .logo-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(108, 92, 231, 0.1);
+    border: 1px solid rgba(108, 92, 231, 0.2);
+    padding: 10px 24px;
+    border-radius: 100px;
+    margin-bottom: 28px;
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent-light);
+  }
+  .logo-badge .dot {
+    width: 8px; height: 8px;
+    background: var(--accent);
+    border-radius: 50%;
+    box-shadow: 0 0 12px var(--accent);
+    animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; box-shadow: 0 0 12px var(--accent); }
+    50% { opacity: 0.5; box-shadow: 0 0 24px var(--accent); }
+  }
+  .header h1 {
+    font-size: clamp(32px, 6vw, 52px);
+    font-weight: 900;
+    line-height: 1.1;
+    letter-spacing: -1px;
+    margin-bottom: 16px;
+  }
+  .header h1 .gradient {
+    background: linear-gradient(135deg, var(--accent-light), var(--green));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .header .subtitle {
+    font-size: 17px;
+    color: var(--text-muted);
+    font-weight: 300;
+    max-width: 500px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  /* === SECTION LABELS === */
+  .section-label {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+    animation: fadeUp 0.8s ease-out;
+  }
+  .section-label .line {
+    height: 1px;
+    flex: 1;
+    background: linear-gradient(to right, var(--border), transparent);
+  }
+  .section-label span {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    white-space: nowrap;
+  }
+
+  /* === SERVICE CARDS === */
+  .services {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 48px;
+  }
+  .service-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 28px 28px;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 20px;
+    transition: all 0.3s ease;
+    animation: fadeUp 0.8s ease-out;
+    animation-fill-mode: both;
+  }
+  .service-card:nth-child(1) { animation-delay: 0.1s; }
+  .service-card:nth-child(2) { animation-delay: 0.2s; }
+  .service-card:nth-child(3) { animation-delay: 0.3s; }
+  .service-card:hover {
+    background: var(--bg-card-hover);
+    border-color: rgba(108, 92, 231, 0.2);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 40px rgba(0,0,0,0.3);
+  }
+  .service-icon {
+    width: 56px; height: 56px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    flex-shrink: 0;
+  }
+  .service-icon.purple {
+    background: rgba(108, 92, 231, 0.12);
+    border: 1px solid rgba(108, 92, 231, 0.2);
+  }
+  .service-icon.teal {
+    background: rgba(0, 206, 201, 0.12);
+    border: 1px solid rgba(0, 206, 201, 0.2);
+  }
+  .service-info h3 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .service-info p {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+  .service-price {
+    text-align: right;
+    flex-shrink: 0;
+  }
+  .service-price .amount {
+    font-size: 26px;
+    font-weight: 800;
+    color: var(--text);
+    font-family: 'Space Mono', monospace;
+    white-space: nowrap;
+  }
+  .service-price .period {
+    font-size: 11px;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 4px;
+  }
+
+  /* === INCLUSIONS === */
+  .inclusions {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 32px 28px;
+    margin-bottom: 48px;
+    animation: fadeUp 0.8s ease-out;
+    animation-delay: 0.4s;
+    animation-fill-mode: both;
+  }
+  .inclusions h3 {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: var(--accent-light);
+  }
+  .inclusion-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 14px;
+  }
+  .inclusion-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+  .inclusion-item .check {
+    color: var(--green);
+    font-size: 16px;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  /* === TOTAL SECTION === */
+  .total-section {
+    background: linear-gradient(135deg, rgba(108, 92, 231, 0.08), rgba(0, 206, 201, 0.06));
+    border: 1px solid rgba(108, 92, 231, 0.15);
+    border-radius: var(--radius);
+    padding: 36px 32px;
+    margin-bottom: 48px;
+    animation: fadeUp 0.8s ease-out;
+    animation-delay: 0.5s;
+    animation-fill-mode: both;
+  }
+  .total-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+  .total-block {
+    text-align: center;
+    padding: 20px;
+    background: rgba(0,0,0,0.2);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+  }
+  .total-block .label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--text-dim);
+    margin-bottom: 12px;
+    font-family: 'Space Mono', monospace;
+  }
+  .total-block .value {
+    font-family: 'Space Mono', monospace;
+    font-size: clamp(28px, 5vw, 38px);
+    font-weight: 700;
+    letter-spacing: -1px;
+  }
+  .total-block .value.purple { color: var(--accent-light); }
+  .total-block .value.teal { color: var(--green); }
+  .total-block .note {
+    font-size: 12px;
+    color: var(--text-dim);
+    margin-top: 8px;
+  }
+
+  .divider-or {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin: 24px 0;
+  }
+  .divider-or .line { height: 1px; flex: 1; background: var(--border); }
+  .divider-or span {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    color: var(--text-dim);
+    letter-spacing: 2px;
+  }
+
+  .total-highlight {
+    text-align: center;
+    padding: 24px;
+    background: rgba(108, 92, 231, 0.06);
+    border-radius: 12px;
+    border: 1px dashed rgba(108, 92, 231, 0.2);
+  }
+  .total-highlight .label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--text-dim);
+    margin-bottom: 12px;
+    font-family: 'Space Mono', monospace;
+  }
+  .total-highlight .value {
+    font-family: 'Space Mono', monospace;
+    font-size: clamp(36px, 7vw, 48px);
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--accent-light), var(--green));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .total-highlight .note {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-top: 8px;
+  }
+
+  /* === TIMELINE === */
+  .timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-bottom: 48px;
+    animation: fadeUp 0.8s ease-out;
+    animation-delay: 0.6s;
+    animation-fill-mode: both;
+  }
+  .timeline-item {
+    display: flex;
+    gap: 20px;
+    padding: 20px 0;
+    position: relative;
+  }
+  .timeline-item:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    left: 19px;
+    top: 56px;
+    bottom: 0;
+    width: 1px;
+    background: linear-gradient(to bottom, rgba(108, 92, 231, 0.3), transparent);
+  }
+  .timeline-dot {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    background: rgba(108, 92, 231, 0.12);
+    border: 2px solid rgba(108, 92, 231, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-family: 'Space Mono', monospace;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--accent-light);
+  }
+  .timeline-content h4 {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .timeline-content p {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+
+  /* === FOOTER === */
+  .footer {
+    text-align: center;
+    padding: 40px 0;
+    border-top: 1px solid var(--border);
+    animation: fadeUp 0.8s ease-out;
+    animation-delay: 0.7s;
+    animation-fill-mode: both;
+  }
+  .footer .brand {
+    font-size: 20px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    margin-bottom: 8px;
+  }
+  .footer .brand .accent { color: var(--accent-light); }
+  .footer .tagline {
+    font-size: 13px;
+    color: var(--text-dim);
+    margin-bottom: 20px;
+  }
+  .footer .validity {
+    display: inline-block;
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    color: var(--text-dim);
+    letter-spacing: 1px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--border);
+    padding: 8px 20px;
+    border-radius: 100px;
+  }
+
+  /* === ANIMATIONS === */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* === RESPONSIVE === */
+  @media (max-width: 640px) {
+    .service-card {
+      grid-template-columns: 1fr;
+      gap: 12px;
+      padding: 20px;
+    }
+    .service-icon { display: none; }
+    .service-price { text-align: left; }
+    .total-grid { grid-template-columns: 1fr; }
+    .container { padding: 24px 16px 60px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="ambient">
+  <div class="orb"></div>
+  <div class="orb"></div>
+  <div class="orb"></div>
+</div>
+
+<div class="container">
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="logo-badge">
+      <span class="dot"></span>
+      Rarhu Tecnologia
+    </div>
+    <h1>Proposta <span class="gradient">Comercial</span></h1>
+    <p class="subtitle">Gestão de tráfego pago e desenvolvimento de sites para acelerar seus resultados digitais.</p>
+  </header>
+
+  <!-- SERVIÇOS -->
+  <div class="section-label">
+    <div class="line"></div>
+    <span>Serviços Propostos</span>
+    <div class="line" style="background: linear-gradient(to left, var(--border), transparent);"></div>
+  </div>
+
+  <div class="services">
+
+    <div class="service-card">
+      <div class="service-icon purple">🎯</div>
+      <div class="service-info">
+        <h3>Gestão de Tráfego Pago</h3>
+        <p>Acompanhamento, criação de campanhas e otimização contínua em Meta Ads e Google Ads para maximizar ROI.</p>
+      </div>
+      <div class="service-price">
+        <div class="amount">R$ 550</div>
+        <div class="period">Mensal / Fixo</div>
+      </div>
+    </div>
+
+    <div class="service-card">
+      <div class="service-icon teal">🖥️</div>
+      <div class="service-info">
+        <h3>Desenvolvimento de Site #1</h3>
+        <p>Site profissional, responsivo e otimizado para conversão com design personalizado e SEO on-page.</p>
+      </div>
+      <div class="service-price">
+        <div class="amount">R$ 850</div>
+        <div class="period">Pagamento Único</div>
+      </div>
+    </div>
+
+    <div class="service-card">
+      <div class="service-icon teal">🖥️</div>
+      <div class="service-info">
+        <h3>Desenvolvimento de Site #2</h3>
+        <p>Segundo site com identidade visual própria, estrutura independente e foco no público-alvo específico.</p>
+      </div>
+      <div class="service-price">
+        <div class="amount">R$ 850</div>
+        <div class="period">Pagamento Único</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- INCLUSO NO TRÁFEGO -->
+  <div class="inclusions">
+    <h3>✦ O que está incluso no Tráfego Pago</h3>
+    <div class="inclusion-grid">
+      <div class="inclusion-item">
+        <span class="check">✓</span>
+        <span>Configuração e estruturação das campanhas</span>
+      </div>
+      <div class="inclusion-item">
+        <span class="check">✓</span>
+        <span>Acompanhamento diário de métricas</span>
+      </div>
+      <div class="inclusion-item">
+        <span class="check">✓</span>
+        <span>Otimização contínua de anúncios</span>
+      </div>
+      <div class="inclusion-item">
+        <span class="check">✓</span>
+        <span>Testes A/B de criativos e públicos</span>
+      </div>
+      <div class="inclusion-item">
+        <span class="check">✓</span>
+        <span>Relatório mensal de performance</span>
+      </div>
+      <div class="inclusion-item">
+        <span class="check">✓</span>
+        <span>Suporte via WhatsApp</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- INVESTIMENTO TOTAL -->
+  <div class="section-label">
+    <div class="line"></div>
+    <span>Investimento</span>
+    <div class="line" style="background: linear-gradient(to left, var(--border), transparent);"></div>
+  </div>
+
+  <div class="total-section">
+    <div class="total-grid">
+      <div class="total-block">
+        <div class="label">Tráfego Pago</div>
+        <div class="value purple">R$ 550</div>
+        <div class="note">recorrente / mês</div>
+      </div>
+      <div class="total-block">
+        <div class="label">2 Sites</div>
+        <div class="value teal">R$ 1.700</div>
+        <div class="note">pagamento único</div>
+      </div>
+    </div>
+
+    <div class="divider-or">
+      <div class="line"></div>
+      <span>TOTAL INICIAL</span>
+      <div class="line"></div>
+    </div>
+
+    <div class="total-highlight">
+      <div class="label">Investimento para começar</div>
+      <div class="value">R$ 2.250</div>
+      <div class="note">Sites (R$ 1.700) + 1º mês de tráfego (R$ 550)</div>
+    </div>
+  </div>
+
+  <!-- ETAPAS -->
+  <div class="section-label">
+    <div class="line"></div>
+    <span>Etapas do Projeto</span>
+    <div class="line" style="background: linear-gradient(to left, var(--border), transparent);"></div>
+  </div>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-dot">01</div>
+      <div class="timeline-content">
+        <h4>Briefing & Planejamento</h4>
+        <p>Reunião inicial para entender o negócio, público-alvo, concorrentes e objetivos. Definição da estratégia de tráfego e estrutura dos sites.</p>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot">02</div>
+      <div class="timeline-content">
+        <h4>Desenvolvimento dos Sites</h4>
+        <p>Criação dos 2 sites com design profissional, responsivo e otimizado para SEO. Entrega em até 15 dias úteis.</p>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot">03</div>
+      <div class="timeline-content">
+        <h4>Setup das Campanhas</h4>
+        <p>Configuração de pixel, públicos, criativos e estrutura das campanhas de tráfego pago nas plataformas.</p>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot">04</div>
+      <div class="timeline-content">
+        <h4>Otimização Contínua</h4>
+        <p>Monitoramento diário, ajustes de lance, testes A/B e relatórios mensais para maximizar retorno.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="brand">Rarhu <span class="accent">Tecnologia</span></div>
+    <div class="tagline">Tecnologia que impulsiona negócios</div>
+    <div class="validity">Proposta válida por 15 dias — Abril 2026</div>
+  </footer>
+
+</div>
+
+</body>
+</html>
