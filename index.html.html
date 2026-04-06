@@ -286,6 +286,11 @@
   .total-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .total-grid-3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
     gap: 24px;
   }
   .total-block {
@@ -451,17 +456,227 @@
     to { opacity: 1; transform: translateY(0); }
   }
 
-  /* === RESPONSIVE === */
-  @media (max-width: 640px) {
+  /* === RESPONSIVE — TABLET (max 768px) === */
+  @media (max-width: 768px) {
+    .container {
+      padding: 32px 20px 60px;
+    }
+    .header {
+      margin-bottom: 44px;
+    }
+    .header h1 {
+      font-size: 36px;
+    }
+    .header .subtitle {
+      font-size: 15px;
+    }
     .service-card {
+      padding: 22px 20px;
+      gap: 16px;
+    }
+    .service-icon {
+      width: 46px; height: 46px;
+      font-size: 20px;
+      border-radius: 12px;
+    }
+    .service-info h3 {
+      font-size: 16px;
+    }
+    .service-info p {
+      font-size: 12px;
+    }
+    .service-price .amount {
+      font-size: 22px;
+    }
+    .total-section {
+      padding: 28px 20px;
+    }
+    .total-grid-3 {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    .total-block .value {
+      font-size: clamp(22px, 4vw, 28px) !important;
+    }
+    .total-highlight .value {
+      font-size: clamp(28px, 6vw, 36px);
+    }
+    .total-highlight .note {
+      font-size: 11px;
+      padding: 0 8px;
+    }
+    .inclusions {
+      padding: 24px 20px;
+    }
+    .inclusion-grid {
       grid-template-columns: 1fr;
       gap: 12px;
-      padding: 20px;
+    }
+  }
+
+  /* === RESPONSIVE — MOBILE (max 520px) === */
+  @media (max-width: 520px) {
+    .container {
+      padding: 20px 14px 48px;
+    }
+    .header {
+      margin-bottom: 36px;
+    }
+    .logo-badge {
+      font-size: 11px;
+      padding: 8px 16px;
+      letter-spacing: 1.5px;
+    }
+    .header h1 {
+      font-size: 28px;
+      letter-spacing: -0.5px;
+    }
+    .header .subtitle {
+      font-size: 14px;
+      line-height: 1.5;
+    }
+    .section-label span {
+      font-size: 9px;
+      letter-spacing: 2px;
+    }
+
+    /* Cards: stack layout */
+    .service-card {
+      grid-template-columns: 1fr;
+      gap: 14px;
+      padding: 20px 18px;
+    }
+    .service-icon {
+      width: 42px; height: 42px;
+      font-size: 18px;
+      border-radius: 10px;
+    }
+    .service-info h3 {
+      font-size: 15px;
+    }
+    .service-info p {
+      font-size: 12px;
+    }
+    .service-price {
+      text-align: left;
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+    }
+    .service-price .amount {
+      font-size: 22px;
+    }
+    .service-price .period {
+      font-size: 10px;
+    }
+
+    /* Inclusions: single column */
+    .inclusions {
+      padding: 20px 16px;
+    }
+    .inclusions h3 {
+      font-size: 14px;
+    }
+    .inclusion-grid {
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+    .inclusion-item {
+      font-size: 13px;
+    }
+
+    /* Investment: stack blocks */
+    .total-section {
+      padding: 22px 16px;
+    }
+    .total-grid-3 {
+      grid-template-columns: 1fr;
+    }
+    .total-block {
+      padding: 16px 12px;
+    }
+    .total-block .label {
+      font-size: 9px;
+      letter-spacing: 1.5px;
+    }
+    .total-block .value {
+      font-size: 22px !important;
+    }
+    .total-block .note {
+      font-size: 10px;
+    }
+    .divider-or span {
+      font-size: 9px;
+    }
+    .total-highlight {
+      padding: 18px 12px;
+    }
+    .total-highlight .label {
+      font-size: 9px;
+    }
+    .total-highlight .value {
+      font-size: 28px;
+    }
+    .total-highlight .note {
+      font-size: 11px;
+      line-height: 1.5;
+      padding: 0 4px;
+    }
+
+    /* Timeline */
+    .timeline-dot {
+      width: 34px; height: 34px;
+      font-size: 11px;
+    }
+    .timeline-item:not(:last-child)::after {
+      left: 16px;
+    }
+    .timeline-content h4 {
+      font-size: 14px;
+    }
+    .timeline-content p {
+      font-size: 12px;
+    }
+
+    /* Footer */
+    .footer {
+      padding: 30px 0;
+    }
+    .footer .brand {
+      font-size: 18px;
+    }
+    .footer .validity {
+      font-size: 9px;
+      padding: 6px 14px;
+    }
+
+    /* Ambient orbs: reduce size on mobile */
+    .ambient .orb:nth-child(1) { width: 350px; height: 350px; }
+    .ambient .orb:nth-child(2) { width: 300px; height: 300px; }
+    .ambient .orb:nth-child(3) { width: 250px; height: 250px; }
+  }
+
+  /* === RESPONSIVE — SMALL MOBILE (max 380px) === */
+  @media (max-width: 380px) {
+    .container {
+      padding: 16px 10px 40px;
+    }
+    .header h1 {
+      font-size: 24px;
+    }
+    .service-card {
+      padding: 16px 14px;
+      gap: 10px;
     }
     .service-icon { display: none; }
-    .service-price { text-align: left; }
-    .total-grid { grid-template-columns: 1fr; }
-    .container { padding: 24px 16px 60px; }
+    .service-price .amount {
+      font-size: 20px;
+    }
+    .total-block .value {
+      font-size: 18px !important;
+    }
+    .total-highlight .value {
+      font-size: 24px;
+    }
   }
 </style>
 </head>
@@ -530,6 +745,18 @@
       </div>
     </div>
 
+    <div class="service-card">
+      <div class="service-icon" style="background: rgba(253, 203, 110, 0.12); border: 1px solid rgba(253, 203, 110, 0.25);">🔧</div>
+      <div class="service-info">
+        <h3>Manutenção & Hospedagem</h3>
+        <p>Custo mensal para manter os sites online — inclui hospedagem, domínio, SSL e suporte técnico básico.</p>
+      </div>
+      <div class="service-price">
+        <div class="amount" style="color: var(--orange);">A definir</div>
+        <div class="period">Mensal / Recorrente</div>
+      </div>
+    </div>
+
   </div>
 
   <!-- INCLUSO NO TRÁFEGO -->
@@ -571,7 +798,7 @@
   </div>
 
   <div class="total-section">
-    <div class="total-grid">
+    <div class="total-grid total-grid-3">
       <div class="total-block">
         <div class="label">Tráfego Pago</div>
         <div class="value purple">R$ 550</div>
@@ -581,6 +808,11 @@
         <div class="label">2 Sites</div>
         <div class="value teal">R$ 1.700</div>
         <div class="note">pagamento único</div>
+      </div>
+      <div class="total-block">
+        <div class="label">Manutenção</div>
+        <div class="value" style="color: var(--orange);">A definir</div>
+        <div class="note">hospedagem & domínio / mês</div>
       </div>
     </div>
 
@@ -593,7 +825,7 @@
     <div class="total-highlight">
       <div class="label">Investimento para começar</div>
       <div class="value">R$ 2.250</div>
-      <div class="note">Sites (R$ 1.700) + 1º mês de tráfego (R$ 550)</div>
+      <div class="note">Sites (R$ 1.700) + 1º mês de tráfego (R$ 550) + custo de manutenção (a definir)</div>
     </div>
   </div>
 
